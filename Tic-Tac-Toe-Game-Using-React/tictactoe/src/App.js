@@ -25,7 +25,15 @@ export const Box = function(){
     
     setSquares(nextSquares);
     setXIsNext(!xIsNext);
-    setStatus(calculateWinner(nextSquares) ? `Winner: ${calculateWinner(nextSquares)}` : `Next Player: ${xIsNext ? 'X' : 'O'}`);
+    const winner = calculateWinner(nextSquares);
+    const isDraw = !nextSquares.includes(null) && !winner;
+    if(isDraw){
+      setStatus("It's a Draw");
+    }
+    else{
+      setStatus(winner ? `Winner: ${winner}` : `Next Player: ${xIsNext ? 'X' : 'O'}`);
+    }
+    
   }
   
   return(
